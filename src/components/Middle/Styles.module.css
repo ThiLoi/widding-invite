@@ -1,0 +1,27 @@
+.middle {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.middle p {
+  font-size: 1.4rem;
+  font-family: Open Sans Hebrew;
+  color: #404951;
+  letter-spacing: 10%;
+  width: 32rem;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.images img {
+  width: 15rem;
+  height: 19.5rem;
+  object-fit: cover;
+}

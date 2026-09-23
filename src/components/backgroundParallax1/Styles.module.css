@@ -1,0 +1,11 @@
+.backgroudParallax {
+  display: flex;
+  justify-content: center;
+  background-image: url(./M&W-134.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 20rem;
+  min-width: 100vw;
+}

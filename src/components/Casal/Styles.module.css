@@ -1,0 +1,42 @@
+.casal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5rem;
+  gap: 2rem;
+}
+
+.casal h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #404951;
+  font-family: Open Sans Hebrew;
+}
+
+.casal p {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-family: Open Sans Hebrew;
+  color: #404951;
+  letter-spacing: 10%;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.images img {
+  width: 15rem;
+  height: 19.5rem;
+  object-fit: cover;
+}
+
+.carross {
+  margin-top: 5rem;
+}

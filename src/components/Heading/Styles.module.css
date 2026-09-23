@@ -1,0 +1,15 @@
+.heading {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-image: url("./M&W-002\ 1.png");
+  height: 46.6rem;
+}
+
+.heading img {
+  display: flex;
+  width: 27rem;
+  height: 31rem;
+  opacity: 70%;
+  margin-top: 5rem;
+}
