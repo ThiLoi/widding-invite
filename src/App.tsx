@@ -31,6 +31,10 @@ export function App() {
       <Container>
         <Ceremonia />
       </Container>
+
+      <Container>
+        <Casal />
+      </Container>
     </>
   );
 }
