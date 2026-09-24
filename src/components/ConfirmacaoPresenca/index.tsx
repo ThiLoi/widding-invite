@@ -1,4 +1,5 @@
-import React, { useState, SubmitEvent, ChangeEvent } from "react";
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import Styles from "./Styles.module.css";
 
 const API_URL =
@@ -24,7 +25,9 @@ export function ConfirmacaoPresenca(): React.JSX.Element {
   const [confirmadoSucesso, setConfirmadoSucesso] = useState<boolean>(false);
 
   // 1. Buscar o nome na planilha
-  const handleVerificar = async (e: React.SubmitEvent): Promise<void> => {
+  const handleVerificar = async (
+    e: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     if (!nomeInput.trim()) {
       setMensagem("Por favor, digite seu nome.");
@@ -41,7 +44,7 @@ export function ConfirmacaoPresenca(): React.JSX.Element {
         `${API_URL}?action=buscar&nome=${encodeURIComponent(nomeInput.trim())}`,
         {
           method: "GET",
-          redirect: "follow", // <-- Garante que o redirecionamento do Google seja seguido
+          redirect: "follow",
         },
       );
 
