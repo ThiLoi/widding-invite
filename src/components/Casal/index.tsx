@@ -9,7 +9,6 @@ import carro3 from "./M&W-133 1.png";
 import carro4 from "./M&W-159 1.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 
 export function Casal() {
   return (
