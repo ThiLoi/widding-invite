@@ -34,11 +34,11 @@ export function App() {
       </Container>
 
       <Container>
-        <Presente />
+        <ConfirmacaoPresenca />
       </Container>
 
       <Container>
-        <ConfirmacaoPresenca />
+        <Presente />
       </Container>
 
       <DefaulFooter />
