@@ -1,11 +1,43 @@
-.backgroudParallax {
+/* Contêiner principal da seção */
+.parallax-wrapper {
+  position: relative;
+  height: 25vh;
+  min-height: 20rem;
+  width: 100%;
+  overflow: hidden; /* Esconde a parte da imagem que sai do contêiner durante a animação */
   display: flex;
   justify-content: center;
-  background-image: url(./M&W-143.jpg);
-  background-attachment: fixed;
+  align-items: center;
+}
+
+/* Imagem de fundo que sofre o movimento Parallax */
+.parallax-bg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 140%; /* Altura maior para permitir o movimento sem mostrar espaços em branco */
+
+  /* CHAVE DA FLUIDEZ: Suaviza as mudanças do translate3d */
+  transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+
+  background-image: url("./M&W-143.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 30rem;
-  min-width: 100vw;
+
+  z-index: 1;
+
+  /* Garante máxima nitidez e usa aceleração da placa de vídeo (GPU) */
+  will-change: transform;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Camada onde fica o seu texto, botões ou componentes */
+.parallax-content {
+  position: relative;
+  z-index: 2; /* Fica acima da imagem de fundo */
+  color: #ffffff;
+  text-align: center;
 }

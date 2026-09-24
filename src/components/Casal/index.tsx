@@ -9,6 +9,7 @@ import carro3 from "./M&W-133 1.png";
 import carro4 from "./M&W-159 1.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 export function Casal() {
   return (
@@ -39,6 +40,7 @@ export function Casal() {
           reverseDirection: false, // Inverte a direção do autoplay se true
           stopOnLastSlide: false, // Para no último slide se true (necessário loop: false)
         }}
+        speed={1200}
         loop={true}
       >
         <SwiperSlide>
