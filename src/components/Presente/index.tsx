@@ -20,6 +20,24 @@ import JogoFaca from "./imgs/jogo_de_facas_suporte_madeira.jpg";
 import JogoPanela from "./imgs/jogo_panelas_5_pecas_preto.jpg";
 import JogoXicara from "./imgs/jogo_xicaras_para_cafe_com_pires.jpg";
 import JogoEdredom from "./imgs/jogo_edredom_cinza.jpg";
+import JogoToalha from "./imgs/jogo_toalha_banho_azul_4_pecas.jpg";
+import Lavadora from "./imgs/lavadora-e-secadora-de-roupas-8-kg-com-display-digital.jpg";
+import Liquidificador from "./imgs/liquidificador-3-velocidades.jpg";
+import Lixo from "./imgs/lixo-para-cozinha-inox-6l.jpg";
+import Mesa from "./imgs/Mesa_de_Jantar_com_6_Cadeiras.jpeg";
+import Mixer from "./imgs/mixer-vermelho-com-utensilios.jpg";
+import MaquinaCafe from "./imgs/maquina-de-cafe.jpg";
+import PanelaArroz from "./imgs/panela-eletrica-127v.jpg";
+import PanelaEletrica from "./imgs/VqAu6_1769973193.jpg";
+import PortaCondimentos from "./imgs/porta_condimentos_bambu.jpg";
+import Processador from "./imgs/processador_preto_800w.jpg";
+import Rack from "./imgs/49.jpg";
+import Robo from "./imgs/robôaspiradordepó.png";
+import Sanduicheira from "./imgs/Sanduicheira_Mondial_Master_Grill.jpeg";
+import SmartTV from "./imgs/smart_tv_led_40_polegadas.jpg";
+import Sofa from "./imgs/sofa-preto-3-lugares.jpg";
+import Vaporizador from "./imgs/Vaporizador_de_Roupas_Arno.jpeg";
+import Ventilador from "./imgs/8RZCo_1769974845.jpg";
 
 export function Presente() {
   return (
@@ -167,133 +185,126 @@ export function Presente() {
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={JogoToalha}
           name="Jogo Toalha de Banho Azul - 4 Peças"
           price="R$261,80"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Lavadora}
           name="Lavadora e secadora de roupas"
           price="R$4.466,29"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Liquidificador}
           name="Liquidificador"
           price="R$327,17"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Lixo}
           name="Lixo para cozinha"
           price="R$265,73"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Mesa}
           name="Mesa de Jantar com 4 Cadeiras"
           price="R$3.841,80"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Mixer}
           name="Mixer 3 em 1 Vermelho"
           price="R$359,33"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={MaquinaCafe}
           name="Máquina de Café Expresso"
           price="R$449,85"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={PanelaArroz}
           name="Panela de Arroz Elétrica"
           price="R$279,50"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={PanelaEletrica}
           name="Panela de Pressão Elétrica"
           price="R$499,18"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={PortaCondimentos}
           name="Porta Condimentos com Base Giratória em Madeira"
           price="R$230,23"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
-          name="Primeiro lugar na fila do buffet"
-          price="R$359,47"
-          buttonLabel="Presentear"
-          onButtonClick={() => console.log("Presentear clicado")}
-        />
-        <ProductCard
-          image={JogoEdredom}
+          image={Processador}
           name="Processador de Alimentos Preto - 800W"
           price="R$466,77"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Rack}
           name="Rack"
           price="R$512,28"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Robo}
           name="Robô Aspirador de Pó"
           price="R$1.267,24"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Sanduicheira}
           name="Sanduicheira Mondial Master Grill"
           price="R$221,92"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={SmartTV}
           name="Smart TV LED 43 Polegadas"
           price="R$1.787,90"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Sofa}
           name="Sofá Retrátil Reclinável"
           price="R$3.331,96"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Vaporizador}
           name="Vaporizador de Roupas Arno"
           price="R$281,58"
           buttonLabel="Presentear"
           onButtonClick={() => console.log("Presentear clicado")}
         />
         <ProductCard
-          image={JogoEdredom}
+          image={Ventilador}
           name="Ventilador de Pé"
           price="R$299,85"
           buttonLabel="Presentear"

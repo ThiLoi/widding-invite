@@ -40,7 +40,7 @@
   color: #111111;
   font-size: 1.4rem;
   font-weight: 700;
-  margin: 0 0 24px 0;
+  margin-top: 2.8rem;
 }
 
 .product-card__button {
@@ -54,6 +54,7 @@
   border-radius: 999px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin-top: 1.2rem;
 }
 
 .product-card__button:hover {
