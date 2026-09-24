@@ -1,7 +1,7 @@
 /* Contêiner principal da seção */
 .parallax-wrapper {
   position: relative;
-  height: 40vh;
+  height: 25vh;
   min-height: 20rem;
   width: 100%;
   overflow: hidden; /* Esconde a parte da imagem que sai do contêiner durante a animação */
