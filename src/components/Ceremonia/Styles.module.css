@@ -18,3 +18,12 @@
   color: #404951;
   letter-spacing: 10%;
 }
+
+.ceremonia iframe {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 35rem;
+  height: 19rem;
+  border: 0;
+}

@@ -8,6 +8,9 @@ import { BackgroundParallax1 } from "./components/backgroundParallax1";
 import { Casal } from "./components/Casal";
 import { BackgroundParallax2 } from "./components/backgroundParallax2";
 import { Ceremonia } from "./components/Ceremonia";
+import { Presente } from "./components/Presente";
+import { Formulario } from "./components/Forms";
+import { DefaulFooter } from "./components/Footer/Index";
 
 export function App() {
   return (
@@ -33,8 +36,14 @@ export function App() {
       </Container>
 
       <Container>
-        <Casal />
+        <Presente />
       </Container>
+
+      <Container>
+        <Formulario />
+      </Container>
+
+      <DefaulFooter />
     </>
   );
 }

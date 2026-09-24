@@ -1,0 +1,23 @@
+.presente {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.presente h1 {
+  font-size: 1.8rem;
+  font-family: Open Sans Hebrew;
+  color: #404951;
+  letter-spacing: 15%;
+}
+
+.produtos {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
