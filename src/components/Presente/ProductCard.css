@@ -45,7 +45,7 @@
 
 .product-card__button {
   width: 100%;
-  background-color: #d9b48f;
+  background-color: #835f51;
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 600;
@@ -58,5 +58,5 @@
 }
 
 .product-card__button:hover {
-  background-color: #cca87c;
+  background-color: #5f4338;
 }
