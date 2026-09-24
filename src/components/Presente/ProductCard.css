@@ -14,7 +14,7 @@
 
 .product-card__image-wrapper {
   width: 12rem;
-  height: 15rem;
+  height: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
 
 .product-card__price {
   color: #111111;
-  font-size: 1.4px;
+  font-size: 1.4rem;
   font-weight: 700;
   margin: 0 0 24px 0;
 }
