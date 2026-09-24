@@ -33,7 +33,7 @@ export function Casal() {
         className={styles.carross}
         pagination={{ clickable: false }}
         autoplay={{
-          delay: 2500, // Tempo de espera em milissegundos (2.5 segundos)
+          delay: 1500, // Tempo de espera em milissegundos (2.5 segundos)
           disableOnInteraction: false, // Continua rodando mesmo se o usuário interagir/clicar
           pauseOnMouseEnter: true, // Pausa quando o mouse passa por cima
           reverseDirection: false, // Inverte a direção do autoplay se true
