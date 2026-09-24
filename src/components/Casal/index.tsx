@@ -40,7 +40,7 @@ export function Casal() {
           reverseDirection: false, // Inverte a direção do autoplay se true
           stopOnLastSlide: false, // Para no último slide se true (necessário loop: false)
         }}
-        speed={1200}
+        speed={3000}
         loop={true}
       >
         <SwiperSlide>
