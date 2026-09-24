@@ -15,9 +15,7 @@ import { DefaulFooter } from "./components/Footer/Index";
 export function App() {
   return (
     <>
-      <Container>
-        <Heading />
-      </Container>
+      <Heading />
 
       <Container>
         <Middle />
