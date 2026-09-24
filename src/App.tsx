@@ -27,11 +27,11 @@ export function App() {
         <Casal />
       </Container>
 
-      <BackgroundParallax2 />
-
       <Container>
         <Ceremonia />
       </Container>
+
+      <BackgroundParallax2 />
 
       <Container>
         <ConfirmacaoPresenca />
