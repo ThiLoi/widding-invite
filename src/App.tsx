@@ -9,7 +9,7 @@ import { Casal } from "./components/Casal";
 import { BackgroundParallax2 } from "./components/backgroundParallax2";
 import { Ceremonia } from "./components/Ceremonia";
 import { Presente } from "./components/Presente";
-import { Formulario } from "./components/Forms";
+import { ConfirmacaoPresenca } from "./components/ConfirmacaoPresenca";
 import { DefaulFooter } from "./components/Footer/Index";
 
 export function App() {
@@ -40,7 +40,7 @@ export function App() {
       </Container>
 
       <Container>
-        <Formulario />
+        <ConfirmacaoPresenca />
       </Container>
 
       <DefaulFooter />

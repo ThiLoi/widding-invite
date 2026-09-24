@@ -4,13 +4,17 @@
   justify-content: center;
   flex-direction: column;
   gap: 5rem;
+  border-top: solid 0.1rem #a47764;
 }
 
 .presente h1 {
-  font-size: 1.8rem;
+  text-align: center;
+  font-size: 2.4rem;
   font-family: Open Sans Hebrew;
-  color: #404951;
-  letter-spacing: 15%;
+  color: #a47764;
+  font-weight: 400;
+  font-style: italic;
+  margin-top: 5rem;
 }
 
 .produtos {

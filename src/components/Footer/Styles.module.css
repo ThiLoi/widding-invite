@@ -11,11 +11,11 @@
 }
 
 .footer a {
-  color: var(--link-color);
+  color: rgb(76, 0, 104);
   text-decoration: none;
 }
 
 .footer a:hover {
-  color: var(--link-hover);
+  color: rgb(48, 0, 66);
   text-decoration: underline;
 }

@@ -6,10 +6,12 @@
 }
 
 .ceremonia h1 {
-  font-size: 1.8rem;
+  text-align: center;
+  font-size: 2.4rem;
   font-family: Open Sans Hebrew;
-  color: #404951;
-  letter-spacing: 30%;
+  color: #a47764;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .ceremonia p {

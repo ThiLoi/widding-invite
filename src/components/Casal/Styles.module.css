@@ -8,9 +8,11 @@
 
 .casal h1 {
   text-align: center;
-  font-size: 1.8rem;
-  color: #404951;
+  font-size: 2.4rem;
   font-family: Open Sans Hebrew;
+  color: #a47764;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .casal p {
