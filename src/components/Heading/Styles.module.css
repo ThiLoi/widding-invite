@@ -2,15 +2,43 @@
   display: flex;
   text-align: center;
   justify-content: center;
-  background-image: url("./M&W-002\ 1.png");
+  background-image: url("./imgs/M&W-002\ 1.png");
   background-size: cover;
   height: 46.6rem;
 }
 
-.heading img {
+.bordas {
   display: flex;
-  width: 22rem;
-  height: 26rem;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25rem;
+  height: 30rem;
+  border: solid 0.2rem #9d7e63;
+  background-color: #fffcf8;
+  opacity: 70%;
+  margin-top: 3rem;
+}
+
+.bordas img {
+  width: 5rem;
+  height: 5.5rem;
   opacity: 85%;
-  margin-top: 5rem;
+  margin-top: 2.5rem;
+}
+
+.bordas h1 {
+  color: #785d5d;
+  letter-spacing: 50%;
+  font-family: Libre Baskerville;
+  font-size: 2.2rem;
+  margin-top: 2.5rem;
+}
+
+.bordas h2 {
+  color: #785d5d;
+  letter-spacing: 30%;
+  font-family: Libre Baskerville;
+  font-size: 1.5rem;
+  margin-top: 7rem;
 }
