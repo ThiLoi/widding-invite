@@ -21,24 +21,8 @@
 }
 
 .bordas img {
-  width: 5rem;
-  height: 5.5rem;
+  width: 25rem;
+  height: 27rem;
   opacity: 85%;
   margin-top: 2.5rem;
-}
-
-.bordas h1 {
-  color: #785d5d;
-  letter-spacing: 50%;
-  font-family: Libre Baskerville;
-  font-size: 2.2rem;
-  margin-top: 2.5rem;
-}
-
-.bordas h2 {
-  color: #785d5d;
-  letter-spacing: 30%;
-  font-family: Libre Baskerville;
-  font-size: 1.5rem;
-  margin-top: 7rem;
 }
