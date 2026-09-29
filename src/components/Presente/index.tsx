@@ -47,7 +47,7 @@ import Ventilador from "./imgs/8RZCo_1769974845.jpg";
 // Inicializa a SDK com a chave pública lida do ficheiro .env do Vite
 const publicKey =
   import.meta.env.VITE_MP_PUBLIC_KEY ||
-  "AAPP_USR-72cdeb1e-4f0a-4d67-b9e7-c8938604191d";
+  "APP_USR-72cdeb1e-4f0a-4d67-b9e7-c8938604191d";
 initMercadoPago(publicKey, {
   locale: "pt-BR",
 });
