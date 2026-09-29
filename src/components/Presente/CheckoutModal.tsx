@@ -3,6 +3,7 @@ import { Payment } from "@mercadopago/sdk-react";
 import Styles from "./Styles.module.css";
 
 interface Produto {
+  id: string;
   image: string;
   name: string;
   price: string;
@@ -14,7 +15,7 @@ interface CheckoutModalProps {
   onClose: () => void;
 }
 
-// 1. Apenas a URL base fica no topo (global do ficheiro)
+// URL da API configurável por ambiente (Vite)
 const API_URL =
   import.meta.env.VITE_API_URL ||
   "https://backend-casamento-matheus.onrender.com";
@@ -37,16 +38,21 @@ export function CheckoutModal({ produto, onClose }: CheckoutModalProps) {
     return {
       paymentMethods: {
         ticket: "all" as const,
-        bankTransfer: "all" as const,
-        creditCard: "all" as const,
-        debitCard: "all" as const,
-        mercadoPago: "all" as const,
+        bankTransfer: "all" as const, // Permite o Pix
+        creditCard: "all" as const, // Permite Cartões de Crédito
+        debitCard: "all" as const, // Permite Cartões de Débito
+        // A opção 'mercadoPago: "all"' foi removida para evitar a exigência do preferenceId
       },
     };
   }, []);
 
-  // 2. O fetch fica CORRETAMENTE DENTRO da função handleSubmit
   const handleSubmit = async ({ formData }: any) => {
+    // Validação de segurança antes de enviar para o backend
+    if (!produto || !produto.numericPrice || !produto.name) {
+      alert("Erro: Dados do presente inválidos.");
+      return;
+    }
+
     setLoading(true);
 
     const nomeConvidado = nomeRef.current?.value || "";
@@ -71,6 +77,7 @@ export function CheckoutModal({ produto, onClose }: CheckoutModalProps) {
         throw new Error(data.message || "Erro no pagamento");
       }
 
+      // Tratamento específico para exibição do QR Code do PIX
       if (data.payment_method_id === "pix") {
         setPixData({
           qrCode: data.point_of_interaction.transaction_data.qr_code,
