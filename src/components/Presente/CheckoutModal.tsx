@@ -3,7 +3,6 @@ import { Payment } from "@mercadopago/sdk-react";
 import Styles from "./Styles.module.css";
 
 interface Produto {
-  id: string;
   image: string;
   name: string;
   price: string;
@@ -15,15 +14,10 @@ interface CheckoutModalProps {
   onClose: () => void;
 }
 
-// URL da API configurável por ambiente (Vite). Em produção, define
-// VITE_API_URL no .env do frontend (ex: https://api.o-teu-site.com).
-const API_URL = import.meta.env.VITE_API_URL || "https://backend-casamento-matheus.onrender.com";
-
-const response = await fetch(`${API_URL}/api/processar-pagamento`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ ... }),
-});
+// 1. Apenas a URL base fica no topo (global do ficheiro)
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://backend-casamento-matheus.onrender.com";
 
 export function CheckoutModal({ produto, onClose }: CheckoutModalProps) {
   const nomeRef = useRef<HTMLInputElement>(null);
@@ -35,9 +29,6 @@ export function CheckoutModal({ produto, onClose }: CheckoutModalProps) {
     qrCodeBase64: string;
   } | null>(null);
 
-  // O "amount" aqui é só para o Brick desenhar o formulário com o valor
-  // certo visualmente. O valor realmente cobrado é sempre calculado no
-  // backend a partir do produto.id — o backend nunca confia neste número.
   const initialization = useMemo(() => {
     return { amount: produto.numericPrice };
   }, [produto.numericPrice]);
@@ -54,6 +45,7 @@ export function CheckoutModal({ produto, onClose }: CheckoutModalProps) {
     };
   }, []);
 
+  // 2. O fetch fica CORRETAMENTE DENTRO da função handleSubmit
   const handleSubmit = async ({ formData }: any) => {
     setLoading(true);
 
@@ -66,7 +58,8 @@ export function CheckoutModal({ produto, onClose }: CheckoutModalProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paymentData: formData,
-          produtoId: produto.id,
+          presenteNome: produto.name,
+          valor: produto.numericPrice,
           nomeConvidado,
           mensagemNoivos,
         }),
