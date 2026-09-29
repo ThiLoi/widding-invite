@@ -92,23 +92,6 @@ export function Presente() {
     <div className={Styles.presente}>
       <h1>LISTA DE PRESENTE</h1>
 
-      {/* PRODUTO DE TESTE TEMPORÁRIO */}
-      <ProductCard
-        image={Xicara}
-        name="🎁 Teste do Sistema (Pagamento Real)"
-        price="R$1,00"
-        buttonLabel="Testar R$ 1,00"
-        onButtonClick={() =>
-          handleOpenCheckout(
-            "teste-pagamento-real",
-            Xicara,
-            "🎁 Teste do Sistema (Pagamento Real)",
-            "R$1,00",
-          )
-        }
-      />
-      {/* FIM DO PRODUTO DE TESTE */}
-
       <div className={Styles.produtos}>
         <ProductCard
           image={AparelhoJantar}
