@@ -1,122 +1,136 @@
-import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import { useState, useEffect } from "react";
+import type { ChangeEvent } from "react";
 import Styles from "./Styles.module.css";
 
+// Substitua pelo seu URL se ele tiver mudado
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbzo-wUyQ0_Ic3t2252xVzClvjjG3vJvFUOx2jcTAhCs5nSm1zhAc3AUjV9MzGZxs9EQ4Q/exec";
+  "https://script.google.com/macros/s/AKfycbyPskDSX8c3n1oVM4e5pF1wl8oA3-8rhvXwunMP6BzycEc7YbsNL_mwk8f_qTzId-b3DQ/exec";
 
-// Interfaces para os tipos de resposta da API
-interface ApiResponseBusca {
-  encontrado: boolean;
-  confirmado: boolean;
+interface Convidado {
   nome: string;
+  confirmado: boolean;
 }
 
-interface ApiResponseConfirmacao {
-  sucesso: boolean;
-}
+export function ConfirmacaoPresenca() {
+  const [listaConvidados, setListaConvidados] = useState<Convidado[]>([]);
+  const [nomeInput, setNomeInput] = useState("");
+  const [sugestoes, setSugestoes] = useState<Convidado[]>([]);
+  const [convidadoSelecionado, setConvidadoSelecionado] =
+    useState<Convidado | null>(null);
 
-export function ConfirmacaoPresenca(): React.JSX.Element {
-  const [nomeInput, setNomeInput] = useState<string>("");
-  const [nomeValidado, setNomeValidado] = useState<string>("");
-  const [mensagem, setMensagem] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [podeConfirmar, setPodeConfirmar] = useState<boolean>(false);
-  const [confirmadoSucesso, setConfirmadoSucesso] = useState<boolean>(false);
+  const [mensagem, setMensagem] = useState("");
+  const [loadingApp, setLoadingApp] = useState(true);
+  const [loadingConfirmacao, setLoadingConfirmacao] = useState(false);
+  const [confirmadoSucesso, setConfirmadoSucesso] = useState(false);
+  const [mostrarDropdown, setMostrarDropdown] = useState(false);
 
-  // 1. Buscar o nome na planilha
-  const handleVerificar = async (
-    e: FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
-    e.preventDefault();
-    if (!nomeInput.trim()) {
-      setMensagem("Por favor, digite seu nome.");
-      return;
-    }
-
-    setLoading(true);
-    setMensagem("Buscando na lista...");
-    setPodeConfirmar(false);
-    setConfirmadoSucesso(false);
-
-    try {
-      const response = await fetch(
-        `${API_URL}?action=buscar&nome=${encodeURIComponent(nomeInput.trim())}`,
-        {
+  // 1. Carrega a lista ao abrir o ecrã
+  useEffect(() => {
+    const buscarLista = async () => {
+      try {
+        const response = await fetch(`${API_URL}?action=listar`, {
           method: "GET",
           redirect: "follow",
-        },
+        });
+
+        const data = await response.json();
+
+        if (data.lista && Array.isArray(data.lista)) {
+          setListaConvidados(data.lista);
+        } else {
+          setMensagem("Erro: A API não devolveu a lista de convidados.");
+        }
+      } catch (error) {
+        console.error("Erro no fetch:", error);
+        setMensagem("Erro de ligação ao carregar a lista.");
+      } finally {
+        setLoadingApp(false);
+      }
+    };
+
+    buscarLista();
+  }, []);
+
+  // 2. Lida com a digitação
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const valor = e.target.value;
+    setNomeInput(valor);
+    setConvidadoSelecionado(null);
+    setMensagem("");
+    setConfirmadoSucesso(false); // Liberta o estado de sucesso ao voltar a escrever
+
+    if (valor.trim().length > 0) {
+      const filtrados = listaConvidados.filter((c) =>
+        c.nome.toLowerCase().includes(valor.toLowerCase()),
       );
-
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-
-      const data: ApiResponseBusca = await response.json();
-
-      if (!data.encontrado) {
-        setMensagem(
-          "Nome não encontrado na lista. Por favor, verifique a grafia.",
-        );
-      } else if (data.confirmado) {
-        setMensagem(
-          `Olá, ${data.nome}! Sua presença já foi confirmada anteriormente.`,
-        );
-      } else {
-        setNomeValidado(data.nome);
-        setMensagem(
-          `Olá, ${data.nome}! Clique no botão abaixo para confirmar sua presença.`,
-        );
-        setPodeConfirmar(true);
-      }
-    } catch (error) {
-      console.error("Erro na verificação:", error);
-      setMensagem("Erro ao consultar a lista. Tente novamente.");
-    } finally {
-      setLoading(false);
+      setSugestoes(filtrados);
+      setMostrarDropdown(true);
+    } else {
+      setSugestoes([]);
+      setMostrarDropdown(false);
     }
   };
 
-  // 2. Confirmar presença na planilha
-  const handleConfirmar = async (): Promise<void> => {
-    setLoading(true);
-    setMensagem("Confirmando...");
-    setPodeConfirmar(false);
+  // 3. Lida com o clique na sugestão
+  const handleSelecionar = (convidado: Convidado) => {
+    setNomeInput(convidado.nome);
+    setConvidadoSelecionado(convidado);
+    setSugestoes([]);
+    setMostrarDropdown(false);
+
+    if (convidado.confirmado) {
+      setMensagem(
+        `Olá, ${convidado.nome}! A sua presença já foi confirmada anteriormente.`,
+      );
+    } else {
+      setMensagem(
+        `Olá, ${convidado.nome}! Confirme a sua presença clicando no botão abaixo.`,
+      );
+    }
+  };
+
+  // 4. Confirma a presença
+  const handleConfirmar = async () => {
+    if (!convidadoSelecionado) return;
+
+    setLoadingConfirmacao(true);
+    setMensagem("A processar confirmação...");
 
     try {
       const response = await fetch(API_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify({ nome: nomeValidado }),
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ nome: convidadoSelecionado.nome }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-
-      const data: ApiResponseConfirmacao = await response.json();
+      const data = await response.json();
 
       if (data.sucesso) {
-        setMensagem("🎉 Presença confirmada com sucesso! Esperamos por você!");
+        // Mensagem indicando que pode continuar a confirmar
+        setMensagem(
+          "🎉 Presença confirmada! Para confirmar mais alguém, basta procurar outro nome.",
+        );
         setConfirmadoSucesso(true);
         setNomeInput("");
+        setConvidadoSelecionado(null); // Limpa a seleção para libertar a próxima pesquisa
+
+        // Atualiza a lista internamente
+        setListaConvidados((prev) =>
+          prev.map((c) =>
+            c.nome === convidadoSelecionado.nome
+              ? { ...c, confirmado: true }
+              : c,
+          ),
+        );
       } else {
-        setMensagem("Erro ao confirmar. Tente novamente.");
-        setPodeConfirmar(true);
+        setMensagem("Ocorreu um erro ao confirmar. Tente novamente.");
       }
     } catch (error) {
-      console.error("Erro ao confirmar:", error);
-      setMensagem("Erro de conexão ao enviar confirmação.");
-      setPodeConfirmar(true);
+      console.error("Erro no post:", error);
+      setMensagem("Erro de ligação ao enviar. Verifique a sua internet.");
     } finally {
-      setLoading(false);
+      setLoadingConfirmacao(false);
     }
-  };
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setNomeInput(e.target.value);
   };
 
   return (
@@ -124,41 +138,66 @@ export function ConfirmacaoPresenca(): React.JSX.Element {
       <h2>Confirmação de Presença</h2>
 
       <div className={Styles.bordarConfirmacao}>
-        <form onSubmit={handleVerificar} className={Styles.confirmacaoForm}>
+        <div className={Styles.confirmacaoForm}>
           <p>
-            <b>*Nome do convite:</b> (Ex.: Tia Ana e Família)
+            <b>*Nome do convite:</b> (Comece a digitar para procurar)
           </p>
-          <input
-            className={Styles.confirmacaoInput}
-            type="text"
-            placeholder="Digite seu nome completo"
-            value={nomeInput}
-            onChange={handleInputChange}
-            disabled={loading || confirmadoSucesso}
-          />
 
-          {!podeConfirmar && !confirmadoSucesso && (
-            <button
-              className={Styles.btnVerificar}
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Verificando..." : "Verificar Nome"}
-            </button>
-          )}
-        </form>
+          <div className={Styles.inputContainer}>
+            <input
+              className={Styles.confirmacaoInput}
+              type="text"
+              placeholder={
+                loadingApp ? "A carregar nomes..." : "Digite o seu nome..."
+              }
+              value={nomeInput}
+              onChange={handleInputChange}
+              // O input já não fica bloqueado (disabled) quando a confirmação tem sucesso
+              disabled={loadingApp || loadingConfirmacao}
+              autoComplete="off"
+            />
+
+            {mostrarDropdown && sugestoes.length > 0 && (
+              <ul className={Styles.sugestoesLista}>
+                {sugestoes.map((convidado, index) => (
+                  <li
+                    key={index}
+                    className={Styles.sugestaoItem}
+                    onMouseDown={() => handleSelecionar(convidado)}
+                  >
+                    {convidado.nome}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {mostrarDropdown &&
+              sugestoes.length === 0 &&
+              nomeInput.length > 0 && (
+                <ul className={Styles.sugestoesLista}>
+                  <li className={Styles.sugestaoItemVazia}>
+                    Nenhum nome encontrado
+                  </li>
+                </ul>
+              )}
+          </div>
+        </div>
 
         {mensagem && <p className={Styles.mensagemStatus}>{mensagem}</p>}
 
-        {podeConfirmar && (
-          <button
-            className={Styles.btnConfirmar}
-            onClick={handleConfirmar}
-            disabled={loading}
-          >
-            {loading ? "Confirmando..." : "Confirmar Minha Presença"}
-          </button>
-        )}
+        {convidadoSelecionado &&
+          !convidadoSelecionado.confirmado &&
+          !confirmadoSucesso && (
+            <button
+              className={Styles.btnConfirmar}
+              onClick={handleConfirmar}
+              disabled={loadingConfirmacao}
+            >
+              {loadingConfirmacao
+                ? "A enviar..."
+                : "Confirmar A Minha Presença"}
+            </button>
+          )}
       </div>
     </div>
   );
