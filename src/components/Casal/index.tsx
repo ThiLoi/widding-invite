@@ -7,6 +7,8 @@ import carro1 from "./M&W-030 1.png";
 import carro2 from "./M&W-065 1.png";
 import carro3 from "./M&W-133 1.png";
 import carro4 from "./M&W-159 1.png";
+import carro5 from "./M&W-002 2.png";
+import carro6 from "./M&W-013 1.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -49,7 +51,13 @@ export function Casal() {
           <img src={carro2} alt="" />
         </SwiperSlide>
         <SwiperSlide>
+          <img src={carro5} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
           <img src={carro3} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={carro6} alt="" />
         </SwiperSlide>
         <SwiperSlide>
           <img src={carro4} alt="" />
