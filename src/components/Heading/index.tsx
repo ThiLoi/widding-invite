@@ -7,7 +7,7 @@ export function Heading() {
       <div className={styles.bordas}>
         <img src={Logo} alt="Logo" />
         <h1>
-          MATHEUS <br /> & <br /> WÂNIA
+          MATHEUS <br /> & <br /> WÂNYA
         </h1>
         <h2>12 | 12 |2026</h2>
       </div>
